@@ -95,9 +95,8 @@ def fun_graficadora(dataframes, column):
     
     plt.tight_layout()  # Ajustamos el layout para evitar solapamiento
     # Guarda la figura con el nombre de la columna
-    plt.savefig(f'{column}.png', dpi=300, bbox_inches='tight')  # Guarda la figura antes de mostrarla
     plt.show()  # Mostramos la figura
-    plt.close(fig)  # Cierra la figura para liberar memoria
+
     
 # Creemos una función para identificar de manera masiva a las variables correlacionadas, en caso de tener un mayor volumen de variables
 def correlation(dataset, threshold):
