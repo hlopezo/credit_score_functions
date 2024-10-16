@@ -92,7 +92,7 @@ def fun_graficadora(dataframes, column):
     # Ocultamos cualquier subplot vacío
     for j in range(i + 1, len(axes)):
         fig.delaxes(axes[j])
-
+    plt.savefig(f'{column}.png', dpi=300, bbox_inches='tight')  # Guarda la figura con el nombre de la columna
     plt.tight_layout()  # Ajustamos el layout para evitar solapamiento
     plt.show()  # Mostramos la figura
 
