@@ -143,6 +143,34 @@ def Gini(y_true,y_pred,signo='+'):
     from sklearn.metrics import roc_auc_score
     return 2*roc_auc_score(y_true, y_pred)-1
 
+# Una función para consolidar lo anterior
+def plot_calibration_curve(y_true, probs, bins, strategy):
+
+    fraction_of_positives, mean_predicted_value = calibration_curve(
+        y_true, probs, n_bins=bins, strategy=strategy)
+
+    max_val = max(mean_predicted_value)
+
+    plt.figure(figsize=(8,10))
+    plt.subplot(2, 1, 1)
+    plt.plot(mean_predicted_value, fraction_of_positives, label='Logistic Regression')
+    plt.plot(np.linspace(0, max_val, bins), np.linspace(0, max_val, bins),
+         linestyle='--', color='red', label='Perfect calibration')
+
+    plt.xlabel('Probability Predictions')
+    plt.ylabel('Fraction of positive examples')
+    plt.title('Calibration Curve')
+    plt.legend(loc='upper left')
+
+
+    plt.subplot(2, 1, 2)
+    plt.hist(probs, range=(0, 1), bins=bins, density=True, stacked=True, alpha=0.3)
+    plt.xlabel('Probability Predictions')
+    plt.ylabel('Fraction of examples')
+    plt.title('Density')
+    plt.show()
+    
+
 
 
 
